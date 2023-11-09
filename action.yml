@@ -3,11 +3,16 @@ description: To generate code coverage badges
 
 inputs:
   app-name:
-    description: Name of the app
+    description: Name of the App
     required: true
   work-dir:
-    description: Location of all the app related files 
+    description: Location of all the App related files 
     required: true
+
+outputs:
+  BADGES: # id of output
+    description: "Code coverage badge"
+    value: ${{ steps.badge.outputs.BADGE }}
 
 runs:
   using: "composite"
@@ -33,3 +38,8 @@ runs:
           indicators: true
           output: both
           thresholds: '30 80' 
+
+      - name: Get badge from .md
+        id: badge
+        run: echo "BADGE=$(grep -oP '!\[Code Coverage\]\(https:\/\/img\.shields\.io\/badge\/Code%20Coverage-[^)]+\)' code-coverage-results.md  | awk -F'[()]' '{print $2}')" >> $GITHUB_OUTPUT
+        shell: bash
