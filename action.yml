@@ -5,6 +5,9 @@ inputs:
   app-name:
     description: Name of the App
     required: true
+  environment:
+    description: Environment this action runs on
+    required: false
   work-dir:
     description: Location of all the App related files 
     required: true
