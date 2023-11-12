@@ -1,6 +1,6 @@
 # Satel Badges Generation
 
-This centralized GitHub action created code coverage badges from xml reports
+This centralized GitHub action creates code coverage badges from xml reports
 
 ```yml 
   badges-generation:
