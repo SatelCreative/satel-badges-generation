@@ -8,9 +8,6 @@ inputs:
   environment:
     description: Environment this action runs on
     required: false
-  work-dir:
-    description: Location of all the App related files 
-    required: true
 
 outputs:
   BADGES: # id of output
