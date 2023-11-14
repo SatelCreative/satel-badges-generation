@@ -2,6 +2,8 @@
 
 This centralized GitHub action creates code coverage badges from xml reports
 
+## Example usage
+
 ```yml 
   badges-generation:
     needs: [poetry-redoc]
