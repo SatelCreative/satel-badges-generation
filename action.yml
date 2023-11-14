@@ -1,0 +1,45 @@
+name: Generate badges
+description: To generate code coverage badges
+
+inputs:
+  app-name:
+    description: Name of the App
+    required: true
+  environment:
+    description: Environment this action runs on
+    required: false
+
+outputs:
+  BADGES: # id of output
+    description: "Code coverage badge"
+    value: ${{ steps.badge.outputs.BADGE }}
+
+runs:
+  using: "composite"
+  steps:
+      - name: Check out repository
+        uses: actions/checkout@v4.1.1
+
+      - name: Download xml reports 
+        uses: actions/download-artifact@v3.0.2
+        with:
+          name: xml-reports    
+
+      # generates a .md file with code coverage link   
+      - name: Code Coverage Report
+        uses: irongut/CodeCoverageSummary@v1.3.0
+        with:
+          filename: coverage.xml
+          badge: true
+          fail_below_min: false
+          format: markdown
+          hide_branch_rate: false
+          hide_complexity: true
+          indicators: true
+          output: both
+          thresholds: '30 80' 
+
+      - name: Get badge from .md
+        id: badge
+        run: echo "BADGE=$(grep -oP '!\[Code Coverage\]\(https:\/\/img\.shields\.io\/badge\/Code%20Coverage-[^)]+\)' code-coverage-results.md  | awk -F'[()]' '{print $2}')" >> $GITHUB_OUTPUT
+        shell: bash
