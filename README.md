@@ -18,6 +18,7 @@ This centralized GitHub action creates code coverage badges from xml reports
         uses: actions/checkout@v4.1.1
 
       - name: Badges
+        id: badges
         uses: SatelCreative/satel-badges-generation@1.0.0
         with:       
           app-name: ${{ inputs.app-name }}
