@@ -8,10 +8,10 @@ inputs:
   environment:
     description: Environment this action runs on
     required: false
-   artifact: 
-     description: Name of artifact 
-     required: false
-     default: "xml-reports" 
+  artifact: 
+    description: Name of artifact 
+    required: false
+    default: "xml-reports" 
 
 outputs:
   BADGES: # id of output
