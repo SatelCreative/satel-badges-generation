@@ -8,6 +8,10 @@ inputs:
   environment:
     description: Environment this action runs on
     required: false
+  artifact: 
+    description: Name of artifact 
+    required: false
+    default: "xml-reports" 
 
 outputs:
   BADGES: # id of output
@@ -23,7 +27,7 @@ runs:
       - name: Download xml reports 
         uses: actions/download-artifact@v4.1.1
         with:
-          name: xml-reports    
+          name: ${{ inputs.artifact }} 
 
       # generates a .md file with code coverage link   
       - name: Code Coverage Report
